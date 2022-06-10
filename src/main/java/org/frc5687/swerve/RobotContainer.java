@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import org.frc5687.swerve.commands.Drive;
 import org.frc5687.swerve.commands.OutliersCommand;
 import org.frc5687.swerve.subsystems.DriveTrain;
+import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.OutliersSubsystem;
 import org.frc5687.swerve.util.OutliersContainer;
 
@@ -17,6 +18,7 @@ public class RobotContainer extends OutliersContainer {
 
     private Robot _robot;
     private DriveTrain _driveTrain;
+    private Indexer _indexer;
 
     public RobotContainer(Robot robot, IdentityMode identityMode) {
         super(identityMode);
@@ -28,8 +30,10 @@ public class RobotContainer extends OutliersContainer {
         _imu = new AHRS(SPI.Port.kMXP, (byte) 200);
 
         _driveTrain = new DriveTrain(this, _oi, _imu);
+        _indexer = new Indexer(this);
 
         setDefaultCommand(_driveTrain, new Drive(_driveTrain, _oi));
+        _oi.initializeButtons(_driveTrain, _indexer);
         _robot.addPeriodic(this::controllerPeriodic, 0.005, 0.005);
         _imu.reset();
     }

@@ -89,4 +89,9 @@ public class Constants {
         public static final double SENSOR_WHEEL_ANG_VELOCITY_NOISE = 0.1; // radians per sec
         public static final double CONTROL_EFFORT = VOLTAGE;
     }
+
+    public static class INDEXER{
+        public static final double INDEXING_SPEED = 20;
+        public static final double IDLE_INDEXER = 10;
+    }
 }

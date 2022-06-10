@@ -20,6 +20,9 @@ public class RobotMap {
             public static final int FL_LEFT_FALCON = 6; // real 6
             public static final int FR_RIGHT_FALCON = 7;
             public static final int FR_LEFT_FALCON = 8;
+
+            public static final int INDEXER = 0;
+            public static final int SHOOTER = 1;
         }
     }
 
