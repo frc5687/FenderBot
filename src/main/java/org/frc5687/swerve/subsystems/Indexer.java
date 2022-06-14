@@ -3,7 +3,6 @@ package org.frc5687.swerve.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
 import org.frc5687.swerve.Constants;
 import org.frc5687.swerve.RobotMap;
 import org.frc5687.swerve.util.OutliersContainer;
