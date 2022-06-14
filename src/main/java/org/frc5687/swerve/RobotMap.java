@@ -23,6 +23,7 @@ public class RobotMap {
 
             public static final int INDEXER = 0;
             public static final int SHOOTER = 1;
+            public static final int INTAKE = 2;
         }
     }
 

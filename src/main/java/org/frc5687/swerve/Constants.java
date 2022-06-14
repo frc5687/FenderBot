@@ -107,4 +107,12 @@ public class Constants {
         public static final double TICKS_TO_ROTATIONS = 2048.0;
         public static final double GEAR_RATIO = 1.3125;
     }
+
+    public static class INTAKE{
+        public static final double THE_BEANS = 20;
+        public static final double BACKWARDS_BEANS = -20;
+        public static final double IDLE_BEANS = -5;
+        public static final double SPIN_BACK_DELAY = 1; //in secs
+        public static final boolean INVERTED = false;
+    }
 }
