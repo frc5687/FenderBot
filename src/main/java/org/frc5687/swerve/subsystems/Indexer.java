@@ -27,7 +27,7 @@ public class Indexer extends OutliersSubsystem{
     /**
      * Stops the feeding 
      */
-    public void IdleIndexer(){
+    public void Idle(){
         indexer.set(ControlMode.PercentOutput, Constants.INDEXER.IDLE_INDEXER);
     }
 

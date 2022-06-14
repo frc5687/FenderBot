@@ -94,4 +94,17 @@ public class Constants {
         public static final double INDEXING_SPEED = 20;
         public static final double IDLE_INDEXER = 10;
     }
+
+    public static class SHOOTER{
+        public static final double SHOOTING_SPEED = 100;
+        public static final double IDLE_SHOOTING_SPEED = SHOOTING_SPEED / 2;
+        public static final boolean INVERTED = false;
+        public static final double kP = 0;
+        public static final double kI = 0;
+        public static final double kD = 0;
+
+        
+        public static final double TICKS_TO_ROTATIONS = 2048.0;
+        public static final double GEAR_RATIO = 1.3125;
+    }
 }
