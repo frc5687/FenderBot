@@ -93,6 +93,8 @@ public class Constants {
     public static class INDEXER{
         public static final double INDEXING_SPEED = 20;
         public static final double IDLE_INDEXER = 10;
+        public static final double TICKS_TO_ROTATIONS = 2048.0;
+        public static final double GEAR_RATIO = 5;
     }
 
     public static class SHOOTER{
