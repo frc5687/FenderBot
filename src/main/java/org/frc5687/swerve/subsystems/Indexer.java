@@ -1,3 +1,4 @@
+
 package org.frc5687.swerve.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -28,10 +29,17 @@ public class Indexer extends OutliersSubsystem{
     }
 
     /**
+     * Intake ball
+     */
+    public void Intake(){
+        _indexer.set(ControlMode.PercentOutput, INDEXER.INTAKING_SPEED);
+    }
+
+    /**
      * Stops the feeding 
      */
     public void Idle(){
-        _indexer.set(ControlMode.PercentOutput, Constants.INDEXER.IDLE_INDEXER);
+        _indexer.set(ControlMode.PercentOutput, INDEXER.IDLE_INDEXER);
         _state = Indexer_State.IDLE;
     }
 

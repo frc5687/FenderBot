@@ -36,8 +36,9 @@ public class Shooter extends OutliersSubsystem{
      * Sets the shooter to idle speed
      */
     public void Idle(){
+
         //_shooter.set(ControlMode.PercentOutput, _controller.calculate(GetVelocity(), SHOOTER.IDLE_SHOOTING_SPEED));
-        _shooter.set(ControlMode.PercentOutput, SHOOTER.IDLE_SHOOTING_SPEED);
+        _shooter.set(ControlMode.PercentOutput, SHOOTER.SHOOTING_SPEED);
         _state = Shooter_State.IDLE;
     }
 
