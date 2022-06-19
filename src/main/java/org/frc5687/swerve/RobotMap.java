@@ -58,7 +58,7 @@ public class RobotMap {
     public static class DIO {
         public static final int SOUTH_EAST = 1;
         public static final int SOUTH_WEST = 2;
-        public static final int NORTH_WEST = 3;
-        public static final int NORTH_EAST = 4;
+        public static final int NORTH_WEST = 4;
+        public static final int NORTH_EAST = 3;
     }
 }

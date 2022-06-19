@@ -163,7 +163,8 @@ public class DriveTrain extends OutliersSubsystem {
 
     @Override
     public void updateDashboard() {
-        
+        metric("NW encoder", _northWest.getAzimuthAngularVelocity());
+        metric("NE encoder", _northEast.getAzimuthAngularVelocity());
     }
 
     public void setNorthEastModuleState(SwerveModuleState state) {
