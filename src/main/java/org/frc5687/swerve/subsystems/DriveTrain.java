@@ -73,7 +73,7 @@ public class DriveTrain extends OutliersSubsystem {
         try {
             _oi = oi;
             _imu = imu;
-            _northWest =
+            _northEast =
                     new DiffSwerveModule(
                             Constants.DriveTrain.NORTH_WEST,
                             RobotMap.CAN.TALONFX.NORTH_WEST_OUTER,
@@ -97,7 +97,7 @@ public class DriveTrain extends OutliersSubsystem {
                             RobotMap.DIO.SOUTH_EAST,
                             Constants.DriveTrain.SOUTH_EAST_OFFSET,
                             Constants.DriveTrain.SOUTH_EAST_ENCODER_INVERTED);
-            _northEast =
+            _northWest =
                     new DiffSwerveModule(
                             Constants.DriveTrain.NORTH_EAST,
                             RobotMap.CAN.TALONFX.NORTH_EAST_INNER,
