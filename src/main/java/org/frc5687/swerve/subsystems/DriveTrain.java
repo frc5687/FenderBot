@@ -38,9 +38,9 @@ public class DriveTrain extends OutliersSubsystem {
     // Order we define swerve modules in kinematics
     // NB: must be same order as we pass to SwerveDriveKinematics
     public static final int NORTH_WEST = 0;
-    public static final int SOUTH_WEST = 1;
-    public static final int SOUTH_EAST = 2;
-    public static final int NORTH_EAST = 3;
+    public static final int NORTH_EAST = 1;
+    public static final int SOUTH_WEST = 2;
+    public static final int SOUTH_EAST = 3;
 
     private DiffSwerveModule _northWest;
     private DiffSwerveModule _southWest;
@@ -109,9 +109,9 @@ public class DriveTrain extends OutliersSubsystem {
             _kinematics =
                     new SwerveDriveKinematics(
                             _northWest.getModulePosition(),
+                            _northEast.getModulePosition(),
                             _southWest.getModulePosition(),
-                            _southEast.getModulePosition(),
-                            _northEast.getModulePosition()
+                            _southEast.getModulePosition()
                     );
             _odometry = new SwerveDriveOdometry(_kinematics, getHeading());
 
@@ -229,9 +229,9 @@ public class DriveTrain extends OutliersSubsystem {
                                     : new ChassisSpeeds(vx, vy, omega));
             SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.DifferentialSwerveModule.MAX_MODULE_SPEED_MPS);
             setNorthWestModuleState(swerveModuleStates[NORTH_WEST]);
+            setNorthEastModuleState(swerveModuleStates[NORTH_EAST]);
             setSouthWestModuleState(swerveModuleStates[SOUTH_WEST]);
             setSouthEastModuleState(swerveModuleStates[SOUTH_EAST]);
-            setNorthEastModuleState(swerveModuleStates[NORTH_EAST]);
             _PIDAngle = getHeading().getRadians();
             _angleController.reset(_PIDAngle);
         } else {
@@ -245,9 +245,9 @@ public class DriveTrain extends OutliersSubsystem {
                                     new Rotation2d(_PIDAngle)));
             SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.DifferentialSwerveModule.MAX_MODULE_SPEED_MPS);
             setNorthWestModuleState(swerveModuleStates[NORTH_WEST]);
+            setNorthEastModuleState(swerveModuleStates[NORTH_EAST]);
             setSouthWestModuleState(swerveModuleStates[SOUTH_WEST]);
             setSouthEastModuleState(swerveModuleStates[SOUTH_EAST]);
-            setNorthEastModuleState(swerveModuleStates[NORTH_EAST]);
         }
     }
     public SwerveDriveKinematicsConstraint getKinematicConstraint() {
