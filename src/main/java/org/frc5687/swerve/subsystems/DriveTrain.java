@@ -168,7 +168,7 @@ public class DriveTrain extends OutliersSubsystem {
         metric("NW/Encoder Angle", _northWest.getModuleAngle());
         metric("SW/Encoder Angle", _southWest.getModuleAngle());
         metric("SE/Encoder Angle", _southEast.getModuleAngle());
-        metric("NE/Encoder Angle", _northEast.getModuleAngle());
+        metric("NE/Encoder Angle", _northEast.getModuleAngle());  
     }
 
     public void setNorthEastModuleState(SwerveModuleState state) {
