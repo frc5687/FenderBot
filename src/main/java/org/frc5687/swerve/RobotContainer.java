@@ -37,9 +37,9 @@ public class RobotContainer extends OutliersContainer {
         _indexer = new Indexer(this);
         _shooter = new Shooter(this);
         _intake = new Intake(this);
-        // _shooter.Idle();
-        // _indexer.Idle();
-        // _intake.Idle();
+        _shooter.Idle();
+        _indexer.Idle();
+        _intake.Idle();
 
         setDefaultCommand(_driveTrain, new Drive(_driveTrain, _oi));
         _oi.initializeButtons(_driveTrain, _indexer, _shooter, _intake);
