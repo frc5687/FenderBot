@@ -34,6 +34,7 @@ public class RobotContainer extends OutliersContainer {
         _imu = new AHRS(SPI.Port.kMXP, (byte) 200);
 
         _driveTrain = new DriveTrain(this, _oi, _imu);
+
         _indexer = new Indexer(this);
         _shooter = new Shooter(this);
         _intake = new Intake(this);

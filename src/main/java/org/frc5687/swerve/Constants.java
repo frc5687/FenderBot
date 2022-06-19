@@ -59,10 +59,10 @@ public class Constants {
         // Position vectors for the swerve module kinematics
         // i.e. location of each swerve module from center of robot
         // see coordinate system above to understand signs of vector coordinates
-        public static final Translation2d NORTH_WEST = new Translation2d( SWERVE_NS_POS, SWERVE_WE_POS ); // +,+
-        public static final Translation2d SOUTH_WEST = new Translation2d( -SWERVE_NS_POS, SWERVE_WE_POS ); // -,+
-        public static final Translation2d SOUTH_EAST = new Translation2d( -SWERVE_NS_POS, -SWERVE_WE_POS ); // -,-
-        public static final Translation2d NORTH_EAST = new Translation2d( SWERVE_NS_POS, -SWERVE_WE_POS ); // +,-
+        public static final Translation2d SOUTH_WEST = new Translation2d( SWERVE_NS_POS, SWERVE_WE_POS ); // +,+
+        public static final Translation2d NORTH_WEST = new Translation2d( -SWERVE_NS_POS, SWERVE_WE_POS ); // -,+
+        public static final Translation2d NORTH_EAST = new Translation2d( -SWERVE_NS_POS, -SWERVE_WE_POS ); // -,-
+        public static final Translation2d SOUTH_EAST = new Translation2d( SWERVE_NS_POS, -SWERVE_WE_POS ); // +,-
 
         // Should be 0, but can correct for hardware error in swerve module headings here.
         public static final double NORTH_WEST_OFFSET = 0; // radians
