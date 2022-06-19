@@ -73,7 +73,7 @@ public class DriveTrain extends OutliersSubsystem {
         try {
             _oi = oi;
             _imu = imu;
-            _northEast =
+            _northWest =
                     new DiffSwerveModule(
                             Constants.DriveTrain.NORTH_WEST,
                             RobotMap.CAN.TALONFX.NORTH_WEST_OUTER,
@@ -97,7 +97,7 @@ public class DriveTrain extends OutliersSubsystem {
                             RobotMap.DIO.SOUTH_EAST,
                             Constants.DriveTrain.SOUTH_EAST_OFFSET,
                             Constants.DriveTrain.SOUTH_EAST_ENCODER_INVERTED);
-            _northWest =
+            _northEast =
                     new DiffSwerveModule(
                             Constants.DriveTrain.NORTH_EAST,
                             RobotMap.CAN.TALONFX.NORTH_EAST_INNER,
@@ -166,25 +166,32 @@ public class DriveTrain extends OutliersSubsystem {
         metric("vx", _oi.getDriveX());
         metric("vy", _oi.getDriveY());
         metric("NW/Encoder Angle", _northWest.getModuleAngle());
+
         metric("SW/Encoder Angle", _southWest.getModuleAngle());
+
         metric("SE/Encoder Angle", _southEast.getModuleAngle());
+
         metric("NE/Encoder Angle", _northEast.getModuleAngle());  
     }
 
     public void setNorthEastModuleState(SwerveModuleState state) {
         _northEast.setIdealState(state);
+        metric("NE/Wanted Angle", state.angle.getRadians());
     }
 
     public void setNorthWestModuleState(SwerveModuleState state) {
         _northWest.setIdealState(state);
+        metric("NW/Wanted Angle", state.angle.getRadians());
     }
 
     public void setSouthEastModuleState(SwerveModuleState state) {
         _southEast.setIdealState(state);
+        metric("SE/Wanted Angle", state.angle.getRadians());
     }
 
     public void setSouthWestModuleState(SwerveModuleState state) {
         _southWest.setIdealState(state);
+        metric("SW/Wanted Angle", state.angle.getRadians());
     }
 
     public double getYaw() {
