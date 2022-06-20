@@ -162,17 +162,18 @@ public class Constants {
 
     public static class INDEXER{
         public static final double INDEXING_SPEED = -0.85;
-        public static final double IDLE_INDEXER = -0.30;
-        public static final double INTAKING_SPEED = -0.20;
+        public static final double IDLE_INDEXER = 0;
+        public static final double INTAKING_SPEED = -0.15;
         public static final double TICKS_TO_ROTATIONS = 2048.0;
         public static final double GEAR_RATIO = 5;
     }
 
     public static class SHOOTER{
         public static final double SHOOTING_SPEED = 0.43;
-        public static final double IDLE_SHOOTING_SPEED = 0.25;
+        public static final double IDLE_SHOOTING_SPEED = 0.20;
         public static final boolean INVERTED = false;
         public static final double kP = 0;
+
         public static final double kI = 0;
         public static final double kD = 0;
 
@@ -184,7 +185,7 @@ public class Constants {
     public static class INTAKE{
         public static final double INTAKEING_SPEED = 0.80;
         public static final double RETRACTING_SPEED = -0.80;
-        public static final double IDLE_INTAKEING_SPEED = 0.30;
+        public static final double IDLE_INTAKEING_SPEED = -0.30;
         public static final double RETRACT_DELAY = 2;
         public static final boolean INVERTED = false;
     }
