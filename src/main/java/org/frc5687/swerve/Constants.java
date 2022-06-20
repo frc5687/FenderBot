@@ -185,6 +185,7 @@ public class Constants {
         public static final double INTAKEING_SPEED = 0.80;
         public static final double RETRACTING_SPEED = -0.80;
         public static final double IDLE_INTAKEING_SPEED = 0.30;
+        public static final double RETRACT_DELAY = 2;
         public static final boolean INVERTED = false;
     }
 }

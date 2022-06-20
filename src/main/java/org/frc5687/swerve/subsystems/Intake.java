@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Intake extends OutliersSubsystem{
 
-    public TalonFX _intake;
-    public Timer _timer;
+    private TalonFX _intake;
+    private Timer _timer;
 
     public Intake(OutliersContainer container){
         super(container);
@@ -28,10 +28,13 @@ public class Intake extends OutliersSubsystem{
     }
 
     public void Retract(){
-        while (_timer.get() < 2) {
+        _timer.start();
+        while (_timer.get() < INTAKE.RETRACT_DELAY) {
             _intake.set(ControlMode.PercentOutput, INTAKE.RETRACTING_SPEED);
         }
         Idle();
+        _timer.stop();
+        _timer.reset();
     }
     @Override
     public void updateDashboard() {
