@@ -6,10 +6,13 @@ import org.frc5687.swerve.Constants.INTAKE;
 import org.frc5687.swerve.RobotMap.CAN.TALONFX;
 import org.frc5687.swerve.util.OutliersContainer;
 
+import edu.wpi.first.wpilibj.Timer;
+
 
 public class Intake extends OutliersSubsystem{
 
     public TalonFX _intake;
+    public Timer _timer;
 
     public Intake(OutliersContainer container){
         super(container);
@@ -24,6 +27,12 @@ public class Intake extends OutliersSubsystem{
         _intake.set(ControlMode.PercentOutput, INTAKE.IDLE_INTAKEING_SPEED);
     }
 
+    public void Retract(){
+        while (_timer.get() < 2) {
+            _intake.set(ControlMode.PercentOutput, INTAKE.RETRACTING_SPEED);
+        }
+        Idle();
+    }
     @Override
     public void updateDashboard() {
 
