@@ -17,6 +17,7 @@ public class Intake extends OutliersSubsystem{
     public Intake(OutliersContainer container){
         super(container);
         _intake = new TalonFX(TALONFX.INTAKE);
+        _timer = new Timer();
     }
 
     public void IntakeBall(){
