@@ -37,6 +37,7 @@ public class Intake extends OutliersSubsystem{
         _timer.stop();
         _timer.reset();
     }
+    
     @Override
     public void updateDashboard() {
 
