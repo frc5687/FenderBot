@@ -33,6 +33,7 @@ public class Indexer extends OutliersSubsystem{
      */
     public void Intake(){
         _indexer.set(ControlMode.PercentOutput, INDEXER.INTAKING_SPEED);
+        _state = Indexer_State.INDEXING_BALL;
     }
 
     /**
@@ -46,7 +47,8 @@ public class Indexer extends OutliersSubsystem{
     private enum Indexer_State{
         INDEXING(0),
         IDLE(1),
-        UNKNOW(2);
+        INDEXING_BALL(2),
+        UNKNOW(3);
 
         private final int _value;
         Indexer_State(int value){
