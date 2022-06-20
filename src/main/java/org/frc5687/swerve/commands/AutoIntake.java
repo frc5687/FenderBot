@@ -30,7 +30,7 @@ public class AutoIntake extends OutliersCommand{
     @Override
     public void end(boolean interrupted){
         super.end(interrupted);
-        _intake.Idle();
+        _intake.Retract();
         _indexer.Idle();
     }
 }

@@ -38,9 +38,9 @@ public class DriveTrain extends OutliersSubsystem {
     // Order we define swerve modules in kinematics
     // NB: must be same order as we pass to SwerveDriveKinematics
     public static final int NORTH_WEST = 0;
-    public static final int SOUTH_WEST = 1;
-    public static final int SOUTH_EAST = 2;
-    public static final int NORTH_EAST = 3;
+    public static final int NORTH_EAST = 1;
+    public static final int SOUTH_WEST = 2;
+    public static final int SOUTH_EAST = 3;
 
     private DiffSwerveModule _northWest;
     private DiffSwerveModule _southWest;
@@ -109,9 +109,9 @@ public class DriveTrain extends OutliersSubsystem {
             _kinematics =
                     new SwerveDriveKinematics(
                             _northWest.getModulePosition(),
+                            _northEast.getModulePosition(),
                             _southWest.getModulePosition(),
-                            _southEast.getModulePosition(),
-                            _northEast.getModulePosition()
+                            _southEast.getModulePosition()
                     );
             _odometry = new SwerveDriveOdometry(_kinematics, getHeading());
 
@@ -166,25 +166,32 @@ public class DriveTrain extends OutliersSubsystem {
         metric("vx", _oi.getDriveX());
         metric("vy", _oi.getDriveY());
         metric("NW/Encoder Angle", _northWest.getModuleAngle());
+
         metric("SW/Encoder Angle", _southWest.getModuleAngle());
+
         metric("SE/Encoder Angle", _southEast.getModuleAngle());
+
         metric("NE/Encoder Angle", _northEast.getModuleAngle());  
     }
 
     public void setNorthEastModuleState(SwerveModuleState state) {
         _northEast.setIdealState(state);
+        metric("NE/Wanted Angle", state.angle.getRadians());
     }
 
     public void setNorthWestModuleState(SwerveModuleState state) {
         _northWest.setIdealState(state);
+        metric("NW/Wanted Angle", state.angle.getRadians());
     }
 
     public void setSouthEastModuleState(SwerveModuleState state) {
         _southEast.setIdealState(state);
+        metric("SE/Wanted Angle", state.angle.getRadians());
     }
 
     public void setSouthWestModuleState(SwerveModuleState state) {
         _southWest.setIdealState(state);
+        metric("SW/Wanted Angle", state.angle.getRadians());
     }
 
     public double getYaw() {
@@ -229,9 +236,9 @@ public class DriveTrain extends OutliersSubsystem {
                                     : new ChassisSpeeds(vx, vy, omega));
             SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.DifferentialSwerveModule.MAX_MODULE_SPEED_MPS);
             setNorthWestModuleState(swerveModuleStates[NORTH_WEST]);
+            setNorthEastModuleState(swerveModuleStates[NORTH_EAST]);
             setSouthWestModuleState(swerveModuleStates[SOUTH_WEST]);
             setSouthEastModuleState(swerveModuleStates[SOUTH_EAST]);
-            setNorthEastModuleState(swerveModuleStates[NORTH_EAST]);
             _PIDAngle = getHeading().getRadians();
             _angleController.reset(_PIDAngle);
         } else {
@@ -245,9 +252,9 @@ public class DriveTrain extends OutliersSubsystem {
                                     new Rotation2d(_PIDAngle)));
             SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.DifferentialSwerveModule.MAX_MODULE_SPEED_MPS);
             setNorthWestModuleState(swerveModuleStates[NORTH_WEST]);
+            setNorthEastModuleState(swerveModuleStates[NORTH_EAST]);
             setSouthWestModuleState(swerveModuleStates[SOUTH_WEST]);
             setSouthEastModuleState(swerveModuleStates[SOUTH_EAST]);
-            setNorthEastModuleState(swerveModuleStates[NORTH_EAST]);
         }
     }
     public SwerveDriveKinematicsConstraint getKinematicConstraint() {
