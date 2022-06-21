@@ -7,17 +7,28 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import org.frc5687.swerve.Constants;
 import org.frc5687.swerve.RobotMap;
 import org.frc5687.swerve.Constants.INDEXER;
+import org.frc5687.swerve.util.ColourSensor;
 import org.frc5687.swerve.util.OutliersContainer;
 
 public class Indexer extends OutliersSubsystem{
     
     private TalonFX _indexer;
     private Indexer_State _state;
+    private ColourSensor _sensor;
     
-    public Indexer(OutliersContainer container){
+    public Indexer(OutliersContainer container, ColourSensor sensor){
         super(container);
         _indexer = new TalonFX(RobotMap.CAN.TALONFX.INDEXER);
         _state = Indexer_State.UNKNOW;
+        _sensor = sensor;
+    }
+
+    public boolean isBlue(){
+        return _sensor.isBlue();
+    }
+
+    public boolean isRed(){
+        return _sensor.isRed();
     }
 
     /**

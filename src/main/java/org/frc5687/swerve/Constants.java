@@ -189,4 +189,8 @@ public class Constants {
         public static final double RETRACT_DELAY = 2;
         public static final boolean INVERTED = false;
     }
+
+    public static class COLOR_SENSOR{
+        public static final double PROXIMITY_THRES = 0.2;
+    }
 }

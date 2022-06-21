@@ -11,6 +11,7 @@ import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.Intake;
 import org.frc5687.swerve.subsystems.OutliersSubsystem;
 import org.frc5687.swerve.subsystems.Shooter;
+import org.frc5687.swerve.util.ColourSensor;
 import org.frc5687.swerve.util.OutliersContainer;
 
 public class RobotContainer extends OutliersContainer {
@@ -19,6 +20,9 @@ public class RobotContainer extends OutliersContainer {
     private AHRS _imu;
 
     private Robot _robot;
+
+    private ColourSensor _sensor;
+    
     private DriveTrain _driveTrain;
     private Indexer _indexer;
     private Shooter _shooter;
@@ -33,6 +37,7 @@ public class RobotContainer extends OutliersContainer {
         _oi = new OI();
         _imu = new AHRS(SPI.Port.kMXP, (byte) 200);
 
+        _sensor = new ColourSensor();
         _driveTrain = new DriveTrain(this, _oi, _imu);
         _indexer = new Indexer(this);
         _shooter = new Shooter(this);
