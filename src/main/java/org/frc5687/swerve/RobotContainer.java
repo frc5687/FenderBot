@@ -72,6 +72,7 @@ public class RobotContainer extends OutliersContainer {
     public void updateDashboard() {
         _driveTrain.updateDashboard();
         _indexer.updateDashboard();
+        _intake.updateDashboard();
         _shooter.updateDashboard();
     }
 
