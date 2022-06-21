@@ -17,8 +17,14 @@ public class AutoIntake extends OutliersCommand{
     @Override
     public void execute(){
         super.execute();
-        _intake.IntakeBall();
-        _indexer.Intake();
+        if(_indexer.backFeed() == false){
+            _intake.IntakeBall();
+            _indexer.Intake();
+        }
+        else{
+            _intake.Dump();
+            _indexer.Dump();
+        }
     }
 
     @Override

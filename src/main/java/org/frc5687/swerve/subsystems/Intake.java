@@ -20,14 +20,27 @@ public class Intake extends OutliersSubsystem{
         _timer = new Timer();
     }
 
+    public void Dump(){
+        _intake.set(ControlMode.PercentOutput, -INTAKE.INTAKEING_SPEED);
+    }
+
+    /**
+     * Intake a ball into the robot
+     */
     public void IntakeBall(){
         _intake.set(ControlMode.PercentOutput, INTAKE.INTAKEING_SPEED);
     }
 
+    /**
+     * Set the intake to idle speed
+     */
     public void Idle(){
         _intake.set(ControlMode.PercentOutput, INTAKE.IDLE_INTAKEING_SPEED);
     }
 
+    /**
+     * Retract the intake with a slow down delay
+     */
     public void Retract(){
         _timer.start();
         while (_timer.get() < INTAKE.RETRACT_DELAY) {

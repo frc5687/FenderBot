@@ -7,20 +7,46 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import org.frc5687.swerve.Constants;
 import org.frc5687.swerve.RobotMap;
 import org.frc5687.swerve.Constants.INDEXER;
+import org.frc5687.swerve.Constants.INTAKE;
 import org.frc5687.swerve.util.ColourSensor;
 import org.frc5687.swerve.util.OutliersContainer;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 
 public class Indexer extends OutliersSubsystem{
     
     private TalonFX _indexer;
     private Indexer_State _state;
     private ColourSensor _sensor;
+    private Alliance team = DriverStation.getAlliance();
     
     public Indexer(OutliersContainer container, ColourSensor sensor){
         super(container);
         _indexer = new TalonFX(RobotMap.CAN.TALONFX.INDEXER);
         _state = Indexer_State.UNKNOW;
         _sensor = sensor;
+    }
+
+    public void Dump(){
+        _indexer.set(ControlMode.PercentOutput, -INDEXER.INDEXING_SPEED);
+    }
+
+    /**
+     * If the FMS team is blue and the ball is blue don't backfeed same goes for red
+     * False if the ball is okay true if the ball is bad... hopefully
+     * @return boolean
+     */
+    public boolean backFeed(){
+        if(team == Alliance.Blue && isBlue()){
+            return false;
+        }
+        else if(team == Alliance.Red && isRed()){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     public boolean isBlue(){
