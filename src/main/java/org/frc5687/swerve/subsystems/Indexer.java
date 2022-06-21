@@ -28,6 +28,9 @@ public class Indexer extends OutliersSubsystem{
         _sensor = sensor;
     }
 
+    /**
+     * Dump the balls out of the indexer
+     */
     public void Dump(){
         _indexer.set(ControlMode.PercentOutput, -INDEXER.INDEXING_SPEED);
     }
@@ -49,10 +52,18 @@ public class Indexer extends OutliersSubsystem{
         }
     }
 
+    /**
+     * Is the colour sensour seeing blue
+     * @return boolean
+     */
     public boolean isBlue(){
         return _sensor.isBlue();
     }
 
+    /**
+     * Is the colour sensour seeing red
+     * @return boolean
+     */
     public boolean isRed(){
         return _sensor.isRed();
     }
