@@ -27,10 +27,6 @@ public class RobotMap {
         }
     }
 
-    public static class I2C{
-        public static final int COLOUR_SENSOR = 1;
-    }
-
     /**
      * There should be an entry here for each PWM port, preferrably in numerical order. Note that
      * for PWM only one device can connect to each port, so the numbers should be unique.
