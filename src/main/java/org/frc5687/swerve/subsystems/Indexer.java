@@ -1,8 +1,7 @@
 
 package org.frc5687.swerve.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.*;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import org.frc5687.swerve.Constants;
 import org.frc5687.swerve.RobotMap;
@@ -10,48 +9,62 @@ import org.frc5687.swerve.Constants.INDEXER;
 import org.frc5687.swerve.util.OutliersContainer;
 
 public class Indexer extends OutliersSubsystem{
-    
+
+    private int TIMEOUT = 200;
     private TalonFX _indexer;
-    private Indexer_State _state;
-    
+    private IndexerState _state;
+
     public Indexer(OutliersContainer container){
         super(container);
         _indexer = new TalonFX(RobotMap.CAN.TALONFX.INDEXER);
-        _state = Indexer_State.UNKNOW;
+        _indexer.setInverted(Constants.INDEXER.INVERTED);
+        _indexer.setNeutralMode(NeutralMode.Coast);
+
+        _indexer.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, TIMEOUT);
+        _indexer.configVoltageCompSaturation(Constants.INDEXER.VOLTAGE, TIMEOUT);
+        _indexer.enableVoltageCompensation(true);
+
+        // don't need very fast can frame, keep default at 20ms. If RIO can bus as issues increase time.
+        _indexer.setStatusFramePeriod(
+                StatusFrame.Status_1_General, 20, Constants.DifferentialSwerveModule.TIMEOUT);
+        _indexer.setStatusFramePeriod(
+                StatusFrame.Status_2_Feedback0, 20, Constants.DifferentialSwerveModule.TIMEOUT);
+        _state = IndexerState.UNKNOWN;
     }
 
     /**
-     * Feeds the ball into the robot
+     * set the speed of the talon.
+     * @param speed
      */
-    public void Feed(){
-        _indexer.set(TalonFXControlMode.PercentOutput, Constants.INDEXER.INDEXING_SPEED);
-        _state = Indexer_State.INDEXING;
+    public void setSpeed(double speed) {
+        _indexer.set(ControlMode.PercentOutput, speed);
+    }
+
+
+    /**
+     * set the current state of the indexer.
+     * @param state
+     */
+    public void setState(IndexerState state) {
+        _state = state;
     }
 
     /**
-     * Intake ball
+     * get the current state of the indexer
+     * @return IndexerState
      */
-    public void Intake(){
-        _indexer.set(ControlMode.PercentOutput, INDEXER.INTAKING_SPEED);
-        _state = Indexer_State.INDEXING_BALL;
+    public IndexerState getState() {
+        return _state;
     }
 
-    /**
-     * Stops the feeding 
-     */
-    public void Idle(){
-        _indexer.set(ControlMode.PercentOutput, INDEXER.IDLE_INDEXER);
-        _state = Indexer_State.IDLE;
-    }
-
-    private enum Indexer_State{
-        INDEXING(0),
-        IDLE(1),
-        INDEXING_BALL(2),
-        UNKNOW(3);
+    public enum IndexerState{
+        IDLE(0),
+        INDEXING(1),
+        WRONG_BALL(2),
+        UNKNOWN(3);
 
         private final int _value;
-        Indexer_State(int value){
+        IndexerState(int value){
             _value = value;
         }
 
@@ -64,22 +77,22 @@ public class Indexer extends OutliersSubsystem{
      * Gets the RPM of the indexer
      * @return double
      */
-    public double GetRPM(){
-        return GetVelocity() / INDEXER.TICKS_TO_ROTATIONS * 600 * INDEXER.GEAR_RATIO;
+    public double getRPM(){
+        return getVelocity() / INDEXER.TICKS_TO_ROTATIONS * 600 * INDEXER.GEAR_RATIO;
     }
 
     /**
      * Gets the veloctiy of the indexer motor
      * @return double
      */
-    public double GetVelocity(){
+    public double getVelocity(){
         return _indexer.getSelectedSensorVelocity();
     }
 
     @Override
     public void updateDashboard() {
-        metric("Feeder velocity", GetVelocity());
+        metric("Feeder velocity", getVelocity());
         metric("Feeder state", _state.getValue());
-        metric("Feeder RPM", GetRPM());
+        metric("Feeder RPM", getRPM());
     }
 }

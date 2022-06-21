@@ -176,22 +176,22 @@ public class DriveTrain extends OutliersSubsystem {
 
     public void setNorthEastModuleState(SwerveModuleState state) {
         _northEast.setIdealState(state);
-        metric("NE/Wanted Angle", state.angle.getRadians());
+//        metric("NE/Wanted Angle", state.angle.getRadians());
     }
 
     public void setNorthWestModuleState(SwerveModuleState state) {
         _northWest.setIdealState(state);
-        metric("NW/Wanted Angle", state.angle.getRadians());
+//        metric("NW/Wanted Angle", state.angle.getRadians());
     }
 
     public void setSouthEastModuleState(SwerveModuleState state) {
         _southEast.setIdealState(state);
-        metric("SE/Wanted Angle", state.angle.getRadians());
+//        metric("SE/Wanted Angle", state.angle.getRadians());
     }
 
     public void setSouthWestModuleState(SwerveModuleState state) {
         _southWest.setIdealState(state);
-        metric("SW/Wanted Angle", state.angle.getRadians());
+//        metric("SW/Wanted Angle", state.angle.getRadians());
     }
 
     public double getYaw() {
@@ -289,9 +289,6 @@ public class DriveTrain extends OutliersSubsystem {
     }
 
     public Pose2d getOdometryPose() {
-//        if (hasEstimatedPose()) {
-//            return getEstimatedPose();
-//        }
         return _odometry.getPoseMeters();
     }
 

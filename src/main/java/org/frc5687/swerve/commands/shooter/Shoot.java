@@ -1,9 +1,11 @@
-package org.frc5687.swerve.commands;
+package org.frc5687.swerve.commands.shooter;
 
+import org.frc5687.swerve.Constants;
+import org.frc5687.swerve.commands.OutliersCommand;
 import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.Shooter;
 
-public class Shoot extends OutliersCommand{
+public class Shoot extends OutliersCommand {
 
     private Shooter _shooter;
     private Indexer _indexer;
@@ -17,8 +19,8 @@ public class Shoot extends OutliersCommand{
     @Override
     public void execute(){
         super.execute();
-        _shooter.Shoot();
-        _indexer.Feed();
+        _shooter.setSpeed(Constants.SHOOTER.SHOOTING_SPEED);
+        _indexer.setSpeed(Constants.INDEXER.INDEXING_SPEED);
     }
 
     @Override
@@ -30,7 +32,5 @@ public class Shoot extends OutliersCommand{
     @Override
     public void end(boolean interrupted){
         super.end(interrupted);
-        _shooter.Idle();
-        _indexer.Idle();
     }
 }

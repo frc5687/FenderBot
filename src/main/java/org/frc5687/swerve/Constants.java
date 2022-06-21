@@ -96,20 +96,6 @@ public class Constants {
         public static final double kI = 0.0;
         public static final double kD = 0.1;
 
-        // Vision PID controller
-        public static final double VISION_TOLERANCE = 0.04; // rads
-        public static final double VISION_kP = 5.6;
-        public static final double VISION_kI = 0.0;
-        public static final double VISION_kD = 0.2;
-        public static final double VISION_IRANGE = MAX_MPS * 2;
-        public static final double MAX_ANG_VEL_VISION = Math.PI * 3; // Max rotation rate of robot (rads/s)
-        public static final long VISION_LATENCY = 50;
-
-        public static final double BALL_VISION_TOLERANCE = 0.040; // rads
-        public static final double BALL_VISION_kP = 3.1;
-        public static final double BALL_VISION_kI = 0.0;
-        public static final double BALL_VISION_kD = 0.2;
-        public static final double BALL_VISION_IRANGE = MAX_MPS * 2;
 
         public static final double POSITION_TOLERANCE = 0.03;
         public static final double ANGLE_TOLERANCE = 0.02;
@@ -164,8 +150,10 @@ public class Constants {
         public static final double INDEXING_SPEED = -0.85;
         public static final double IDLE_INDEXER = 0;
         public static final double INTAKING_SPEED = -0.18;
+        public static final boolean INVERTED = false;
         public static final double TICKS_TO_ROTATIONS = 2048.0;
         public static final double GEAR_RATIO = 5;
+        public static final double VOLTAGE = 12.0;
     }
 
     public static class SHOOTER{
@@ -180,13 +168,15 @@ public class Constants {
         
         public static final double TICKS_TO_ROTATIONS = 2048.0;
         public static final double GEAR_RATIO = 1.3125;
+        public static final double VOLTAGE = 12.0;
     }
 
     public static class INTAKE{
         public static final double INTAKEING_SPEED = 0.80;
         public static final double RETRACTING_SPEED = -0.80;
         public static final double IDLE_INTAKEING_SPEED = -0.30;
-        public static final double RETRACT_DELAY = 2;
+        public static final long RETRACT_DELAY = 2000; // ms
         public static final boolean INVERTED = false;
+        public static final double VOLTAGE = 12.0;
     }
 }

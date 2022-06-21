@@ -1,9 +1,12 @@
-package org.frc5687.swerve.commands;
+package org.frc5687.swerve.commands.intake;
 
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import org.frc5687.swerve.Constants;
+import org.frc5687.swerve.commands.OutliersCommand;
 import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.Intake;
 
-public class AutoIntake extends OutliersCommand{
+public class AutoIntake extends OutliersCommand {
 
     private Intake _intake;
     private Indexer _indexer;
@@ -15,10 +18,15 @@ public class AutoIntake extends OutliersCommand{
     }
 
     @Override
+    public void initialize() {
+        super.initialize();
+    }
+
+    @Override
     public void execute(){
         super.execute();
-        _intake.IntakeBall();
-        _indexer.Intake();
+        // Deploy the intake and spin rollers.
+        _intake.setSpeed(Constants.INTAKE.INTAKEING_SPEED);
     }
 
     @Override
@@ -30,7 +38,7 @@ public class AutoIntake extends OutliersCommand{
     @Override
     public void end(boolean interrupted){
         super.end(interrupted);
-        _intake.Retract();
-        _indexer.Idle();
+        // Retract the intake when the command is interrupted.
+        (new RetractIntake(_intake)).schedule();
     }
 }
