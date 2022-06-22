@@ -9,20 +9,25 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import org.frc5687.swerve.subsystems.DriveTrain;
 import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.Intake;
+import org.frc5687.swerve.subsystems.Maverick;
 import org.frc5687.swerve.subsystems.Shooter;
 import org.frc5687.swerve.util.AxisButton;
 import org.frc5687.swerve.util.Gamepad;
 import org.frc5687.swerve.util.OutliersProxy;
 import org.frc5687.swerve.commands.AutoIntake;
+import org.frc5687.swerve.commands.Clean;
+import org.frc5687.swerve.commands.Fly;
 import org.frc5687.swerve.commands.Shoot;
+import edu.wpi.first.wpilibj.GenericHID;
 
 public class OI extends OutliersProxy {
     protected Gamepad _driverGamepad;
-    protected Joystick _leftJoystick;
-    protected Joystick _rightJoystick;
+    protected Gamepad _operatorGamepad;
 
     private JoystickButton _intake;
     private JoystickButton _shoot;
+    private JoystickButton _clean;
+    private JoystickButton _Maverick;
 
 
     private double yIn = 0;
@@ -30,17 +35,19 @@ public class OI extends OutliersProxy {
 
     public OI() {
         _driverGamepad = new Gamepad(0);
+        _operatorGamepad = new Gamepad(1);
 
-        _leftJoystick = new Joystick(1);
-        _rightJoystick = new Joystick(2);
-
-        _intake = new JoystickButton(_driverGamepad, Gamepad.Buttons.A.getNumber());
-        _shoot = new JoystickButton(_driverGamepad, Gamepad.Buttons.B.getNumber());
+        _intake = new JoystickButton(_operatorGamepad, Gamepad.Buttons.RIGHT_BUMPER.getNumber());
+        _shoot = new JoystickButton(_operatorGamepad, Gamepad.Buttons.LEFT_BUMPER.getNumber());
+        _clean = new JoystickButton(_operatorGamepad, Gamepad.Buttons.A.getNumber());
+        _Maverick = new JoystickButton(_driverGamepad, Gamepad.Buttons.RIGHT_BUMPER.getNumber());
     }
 
-    public void initializeButtons(DriveTrain driveTrain, Indexer indexer, Shooter shooter, Intake intake) {
+    public void initializeButtons(DriveTrain driveTrain, Indexer indexer, Shooter shooter, Intake intake, Maverick maverick) {
         _intake.whenHeld(new AutoIntake(intake, indexer));
         _shoot.whenHeld(new Shoot(shooter, indexer));
+        _clean.whenHeld(new Clean(intake, indexer, shooter));
+        _Maverick.whenHeld(new Fly(maverick));
     }
 
     public double getDriveY() {
@@ -72,6 +79,20 @@ public class OI extends OutliersProxy {
 
     protected double getSpeedFromAxis(Joystick gamepad, int axisNumber) {
         return gamepad.getRawAxis(axisNumber);
+    }
+
+    public void FreedomRumble(){
+        _driverGamepad.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
+        _driverGamepad.setRumble(GenericHID.RumbleType.kRightRumble, 1);
+        _operatorGamepad.setRumble(GenericHID.RumbleType.kLeftRumble, 1);
+        _operatorGamepad.setRumble(GenericHID.RumbleType.kRightRumble, 1);
+    }
+
+    public void EnginesOff(){
+        _driverGamepad.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+        _driverGamepad.setRumble(GenericHID.RumbleType.kRightRumble, 0);
+        _operatorGamepad.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+        _operatorGamepad.setRumble(GenericHID.RumbleType.kRightRumble, 0);
     }
 
     @Override

@@ -2,31 +2,27 @@ package org.frc5687.swerve.commands;
 
 import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.Intake;
+import org.frc5687.swerve.subsystems.Shooter;
 
-public class AutoIntake extends OutliersCommand{
+public class Clean extends OutliersCommand{
 
     private Intake _intake;
     private Indexer _indexer;
-
-    public AutoIntake(Intake intake, Indexer indexer){
+    private Shooter _shooter;
+    
+    public Clean(Intake intake, Indexer indexer, Shooter shooter){
         _intake = intake;
         _indexer = indexer;
-        addRequirements(intake, indexer);
+        _shooter = shooter;
+        addRequirements(intake, indexer, shooter);
     }
 
     @Override
     public void execute(){
         super.execute();
-        if(_intake.isTriggered() && _indexer.isTriggered()){
-            _intake.Kill();
-        }
-        else if(_indexer.isTriggered()){
-            _indexer.Kill();
-        }
-        else{
-            _intake.IntakeBall();
-            _indexer.Intake();
-        }
+        _intake.Clean();
+        _indexer.Clean();
+        _shooter.Clean();
     }
 
     @Override
@@ -38,7 +34,8 @@ public class AutoIntake extends OutliersCommand{
     @Override
     public void end(boolean interrupted){
         super.end(interrupted);
-        _intake.Retract();
+        _intake.Idle();
         _indexer.Idle();
+        _shooter.Idle();
     }
 }

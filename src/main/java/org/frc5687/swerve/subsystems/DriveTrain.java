@@ -295,6 +295,29 @@ public class DriveTrain extends OutliersSubsystem {
         return _odometry.getPoseMeters();
     }
 
+    /**
+     * Check to see if Maverick is at the correct pose
+     * @param destnation the end goal position
+     * @return true if at possition / false if not at position
+     */
+    public boolean MaverickDone(Pose2d destnation){
+        Pose2d cPose =  _odometry.getPoseMeters(); 
+        if(cPose == destnation){
+            //Is the robots position equal to the Maverick supplied destenation
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void JetRumble(){
+        _oi.FreedomRumble();
+    }
+
+    public void JetRumbleOff(){
+        _oi.EnginesOff();
+    }
+
     /** Reset position and gyroOffset of odometry
      * 
      * @param position is a Pose2d (Translation2d, Rotation2d)
