@@ -205,7 +205,7 @@ public class Constants {
     }
 
     public static class DRIVE{
-        public static final double VX_SLEW_RATE = 3.0;
-        public static final double VY_SLEW_RATE = 3.0;
+        public static final double VX_SLEW_RATE = 4.0;
+        public static final double VY_SLEW_RATE = 4.0;
     }
 }
