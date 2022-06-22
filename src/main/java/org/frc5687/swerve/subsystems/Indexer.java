@@ -60,7 +60,7 @@ public class Indexer extends OutliersSubsystem{
      * Spins the indexer backwards to clean it out
      */
     public void Clean(){
-        _indexer.set(ControlMode.PercentOutput, INDEXER.CLEANING_SPPED);
+        _indexer.set(ControlMode.PercentOutput, INDEXER.CLEANING_SPEED);
         _state = Indexer_State.CLEAN;
     }
 

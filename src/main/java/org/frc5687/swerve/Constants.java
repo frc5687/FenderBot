@@ -164,6 +164,7 @@ public class Constants {
         public static final double INDEXING_SPEED = -0.85;
         public static final double IDLE_INDEXER = 0;
         public static final double INTAKING_SPEED = -0.25;
+        public static final double CLEANING_SPEED = 0.85;
         public static final double TICKS_TO_ROTATIONS = 2048.0;
         public static final double GEAR_RATIO = 5;
     }
@@ -171,6 +172,7 @@ public class Constants {
     public static class SHOOTER{
         public static final double SHOOTING_SPEED = 0.43;
         public static final double IDLE_SHOOTING_SPEED = 0.20;
+        public static final double CLEANING_SPEED = -0.43;
         public static final boolean INVERTED = false;
         public static final double kP = 0;
 
@@ -186,7 +188,24 @@ public class Constants {
         public static final double INTAKEING_SPEED = 0.80;
         public static final double RETRACTING_SPEED = -0.80;
         public static final double IDLE_INTAKEING_SPEED = -0.30;
+        public static final double CLEANING_SPEED = -0.80;
         public static final double RETRACT_DELAY = 2;
         public static final boolean INVERTED = false;
+    }
+
+    public static class Maverick{
+        //Constants for controling Maverick
+        public static short TOTAL_NUMB_OF_WAYPOINTS = 2; // Dropped down from four so Maverick doesn't overrun the position
+        public static double[] waypointsX = {0.0, 3.52, 4.09, 2.0};
+        public static double[] waypointsY = {0.0, -0.09, 2.47, 0.0};
+        public static double[] rotations = {-0.10, -0.10, -0.10, 0.0};
+        public static double[] tolerences = {0.0, 0.0, 0.0, 0.0};
+        public static double[] speeds = {1.5, 1.5, 1.5, 3.5, 3.5};
+        public static boolean[] afterburner = {false, false, false, false};
+    }
+
+    public static class DRIVE{
+        public static final double VX_SLEW_RATE = 3.0;
+        public static final double VY_SLEW_RATE = 3.0;
     }
 }
