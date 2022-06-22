@@ -86,9 +86,9 @@ public class Constants {
         public static final double MAX_MPSS = 2.5; // Max acceleration of robot (m/s^2)
 
         // PID controller settings
-        public static final double ANGLE_kP = 2.3;
+        public static final double ANGLE_kP = 0.0; // 2.3
         public static final double ANGLE_kI = 0.0;
-        public static final double ANGLE_kD = 0.6;
+        public static final double ANGLE_kD = 0.0; // 0.6
         public static final double PROFILE_CONSTRAINT_VEL = MAX_ANG_VEL;
         public static final double PROFILE_CONSTRAINT_ACCEL = Math.PI * 3.0;
 
@@ -163,7 +163,7 @@ public class Constants {
     public static class INDEXER{
         public static final double INDEXING_SPEED = -0.85;
         public static final double IDLE_INDEXER = 0;
-        public static final double INTAKING_SPEED = -0.18;
+        public static final double INTAKING_SPEED = -0.25;
         public static final double TICKS_TO_ROTATIONS = 2048.0;
         public static final double GEAR_RATIO = 5;
     }
