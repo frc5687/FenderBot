@@ -9,6 +9,7 @@ import org.frc5687.swerve.commands.OutliersCommand;
 import org.frc5687.swerve.subsystems.DriveTrain;
 import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.Intake;
+import org.frc5687.swerve.subsystems.Maverick;
 import org.frc5687.swerve.subsystems.OutliersSubsystem;
 import org.frc5687.swerve.subsystems.Shooter;
 import org.frc5687.swerve.util.OutliersContainer;
@@ -24,6 +25,8 @@ public class RobotContainer extends OutliersContainer {
     private Shooter _shooter;
     private Intake _intake;
 
+    private Maverick _Maverick;
+
     public RobotContainer(Robot robot, IdentityMode identityMode) {
         super(identityMode);
         _robot = robot;
@@ -37,12 +40,13 @@ public class RobotContainer extends OutliersContainer {
         _indexer = new Indexer(this);
         _shooter = new Shooter(this);
         _intake = new Intake(this);
+        _Maverick = new Maverick(this, _driveTrain);
         _shooter.Idle();
         _indexer.Idle();
         _intake.Idle();
 
         setDefaultCommand(_driveTrain, new Drive(_driveTrain, _oi));
-        _oi.initializeButtons(_driveTrain, _indexer, _shooter, _intake);
+        _oi.initializeButtons(_driveTrain, _indexer, _shooter, _intake, _Maverick);
         _robot.addPeriodic(this::controllerPeriodic, 0.005, 0.005);
         _imu.reset();
     }

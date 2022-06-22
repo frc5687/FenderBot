@@ -6,6 +6,7 @@ import static org.frc5687.swerve.Constants.DriveTrain.MAX_MPS;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import org.frc5687.swerve.OI;
+import org.frc5687.swerve.Constants.DRIVE;
 import org.frc5687.swerve.subsystems.DriveTrain;
 
 public class Drive extends OutliersCommand {
@@ -19,8 +20,8 @@ public class Drive extends OutliersCommand {
     public Drive(DriveTrain driveTrain, OI oi) {
         _driveTrain = driveTrain;
         _oi = oi;
-        _vxFilter = new SlewRateLimiter(3.0);
-        _vyFilter = new SlewRateLimiter(3.0);
+        _vxFilter = new SlewRateLimiter(DRIVE.VX_SLEW_RATE);
+        _vyFilter = new SlewRateLimiter(DRIVE.VY_SLEW_RATE);
         addRequirements(_driveTrain);
     }
 

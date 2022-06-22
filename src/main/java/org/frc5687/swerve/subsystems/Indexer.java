@@ -9,14 +9,18 @@ import org.frc5687.swerve.RobotMap;
 import org.frc5687.swerve.Constants.INDEXER;
 import org.frc5687.swerve.util.OutliersContainer;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+
 public class Indexer extends OutliersSubsystem{
     
     private TalonFX _indexer;
     private Indexer_State _state;
+    private DigitalInput _indexerBeamBreak;
     
     public Indexer(OutliersContainer container){
         super(container);
         _indexer = new TalonFX(RobotMap.CAN.TALONFX.INDEXER);
+        _indexerBeamBreak = new DigitalInput(RobotMap.DIO.INDEXER_BEAM_BREAK);
         _state = Indexer_State.UNKNOW;
     }
 
@@ -44,11 +48,37 @@ public class Indexer extends OutliersSubsystem{
         _state = Indexer_State.IDLE;
     }
 
+    /**
+     * Stops the indexer form indexing
+     */
+    public void Kill(){
+        _indexer.set(ControlMode.PercentOutput, 0.0);
+        _state = Indexer_State.KILL;
+    }
+
+    /**
+     * Spins the indexer backwards to clean it out
+     */
+    public void Clean(){
+        _indexer.set(ControlMode.PercentOutput, INDEXER.CLEANING_SPPED);
+        _state = Indexer_State.CLEAN;
+    }
+
+    /**
+     * Is the indexer beam break triggered
+     * @return boolean
+     */
+    public boolean isTriggered(){
+        return _indexerBeamBreak.get();
+    }
+
     private enum Indexer_State{
         INDEXING(0),
         IDLE(1),
         INDEXING_BALL(2),
-        UNKNOW(3);
+        CLEAN(3),
+        KILL(4),
+        UNKNOW(5);
 
         private final int _value;
         Indexer_State(int value){

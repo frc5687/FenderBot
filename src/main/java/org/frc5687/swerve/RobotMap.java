@@ -60,5 +60,7 @@ public class RobotMap {
         public static final int SOUTH_WEST = 2;
         public static final int NORTH_WEST = 3;
         public static final int NORTH_EAST = 4;
+        public static final int INTAKE_BEAM_BREAK = 5;
+        public static final int INDEXER_BEAM_BREAK = 6;
     }
 }

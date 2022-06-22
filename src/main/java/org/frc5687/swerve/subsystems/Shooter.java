@@ -43,6 +43,14 @@ public class Shooter extends OutliersSubsystem{
     }
 
     /**
+     * Spin the shooter backward to clean it out
+     */
+    public void Clean(){
+        _shooter.set(ControlMode.PercentOutput, SHOOTER.CLEANING_SPEED);
+        _state = Shooter_State.CLEAN;
+    }
+
+    /**
      * Get the RPM of the shooter
      * @return RPM
      */
@@ -61,7 +69,8 @@ public class Shooter extends OutliersSubsystem{
     private enum Shooter_State{
         SHOOTING(0),
         IDLE(1),
-        UNKNOW(2);
+        CLEAN(2),
+        UNKNOW(3);
 
         private final int _value;
 
