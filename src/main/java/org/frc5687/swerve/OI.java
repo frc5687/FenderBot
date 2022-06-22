@@ -57,7 +57,7 @@ public class OI extends OutliersProxy {
 
         double yOut = yIn / (Math.sqrt(yIn * yIn + (xIn * xIn)) + Constants.EPSILON);
         yOut = (yOut + (yIn * 2)) / 3.0;
-        return -yOut;
+        return -yOut; // inverted cuz navx is upside down.
     }
 
     public double getDriveX() {
@@ -67,7 +67,7 @@ public class OI extends OutliersProxy {
 
         double xOut = xIn / (Math.sqrt(yIn * yIn + (xIn * xIn)) + Constants.EPSILON);
         xOut = (xOut + (xIn * 2)) / 3.0;
-        return -xOut;
+        return -xOut; // inverted cuz navx is upside down.
     }
 
     public double getRotationX() {
