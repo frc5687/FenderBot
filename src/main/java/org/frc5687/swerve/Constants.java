@@ -187,7 +187,7 @@ public class Constants {
     public static class INTAKE{
         public static final double INTAKEING_SPEED = 0.80;
         public static final double RETRACTING_SPEED = -0.80;
-        public static final double IDLE_INTAKEING_SPEED = -0.30;
+        public static final double IDLE_INTAKEING_SPEED = 0.00; //-0.30;
         public static final double CLEANING_SPEED = -0.80;
         public static final double RETRACT_DELAY = 2;
         public static final boolean INVERTED = false;
@@ -202,6 +202,11 @@ public class Constants {
         public static double[] tolerences = {0.0, 0.0, 0.0, 0.0};
         public static double[] speeds = {1.5, 1.5, 1.5, 3.5, 3.5};
         public static boolean[] afterburner = {false, false, false, false};
+
+        public static double AUTO_X = 1.0;
+        public static double AUTO_Y = 0.0;
+        public static double AUTO_THETA = 0.0;
+        public static double AUTO_SPEEDS = DriveTrain.MAX_MPS;
     }
 
     public static class DRIVE{

@@ -1,5 +1,7 @@
 package org.frc5687.swerve.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import org.frc5687.swerve.Constants;
 import org.frc5687.swerve.util.OutliersContainer;
 
@@ -99,6 +101,14 @@ public class Maverick extends OutliersSubsystem{
         //Iterate through all of the waypoints
         Translation2d translation = new Translation2d(Constants.Maverick.waypointsX[_wayPointCounter], Constants.Maverick.waypointsY[_wayPointCounter]);
         Rotation2d rotation = new Rotation2d(Constants.Maverick.rotations[_wayPointCounter]);
+        destnation = new Pose2d(translation, rotation);
+        _driveTrain.poseFollower(destnation, Constants.Maverick.speeds[_wayPointCounter]);
+        _move = true;
+    }
+
+    public void Move(){
+        Translation2d translation = new Translation2d(Constants.Maverick.AUTO_X, Constants.Maverick.AUTO_Y);
+        Rotation2d rotation = new Rotation2d(Constants.Maverick.AUTO_THETA);
         destnation = new Pose2d(translation, rotation);
         _driveTrain.poseFollower(destnation, Constants.Maverick.speeds[_wayPointCounter]);
         _move = true;

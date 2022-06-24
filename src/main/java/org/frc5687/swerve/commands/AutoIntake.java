@@ -17,15 +17,9 @@ public class AutoIntake extends OutliersCommand{
     @Override
     public void execute(){
         super.execute();
-        if(_intake.isTriggered() && _indexer.isTriggered()){
-            _intake.Kill();
-        }
-        else if(_indexer.isTriggered()){
-            _indexer.Kill();
-        }
-        else{
-            _intake.IntakeBall();
-            _indexer.Intake();
+        _intake.IntakeBall();
+        if(_intake.isTriggered()){
+            _indexer.EdgeIn();
         }
     }
 

@@ -10,18 +10,21 @@ import org.frc5687.swerve.Constants.INDEXER;
 import org.frc5687.swerve.util.OutliersContainer;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 
 public class Indexer extends OutliersSubsystem{
     
     private TalonFX _indexer;
     private Indexer_State _state;
     private DigitalInput _indexerBeamBreak;
+    private Timer _timer;
     
     public Indexer(OutliersContainer container){
         super(container);
         _indexer = new TalonFX(RobotMap.CAN.TALONFX.INDEXER);
         _indexerBeamBreak = new DigitalInput(RobotMap.DIO.INDEXER_BEAM_BREAK);
         _state = Indexer_State.UNKNOW;
+        _timer = new Timer();
     }
 
     /**
@@ -48,6 +51,16 @@ public class Indexer extends OutliersSubsystem{
         _state = Indexer_State.IDLE;
     }
 
+    public void EdgeIn(){
+        _timer.start();
+        while(_timer.get() < 1){
+            _indexer.set(ControlMode.PercentOutput, Constants.INDEXER.INDEXING_SPEED);
+        }
+        Kill();
+        _timer.stop();
+        _timer.reset();
+    }
+
     /**
      * Stops the indexer form indexing
      */
@@ -69,7 +82,7 @@ public class Indexer extends OutliersSubsystem{
      * @return boolean
      */
     public boolean isTriggered(){
-        return _indexerBeamBreak.get();
+        return !_indexerBeamBreak.get();
     }
 
     private enum Indexer_State{
@@ -111,5 +124,6 @@ public class Indexer extends OutliersSubsystem{
         metric("Feeder velocity", GetVelocity());
         metric("Feeder state", _state.getValue());
         metric("Feeder RPM", GetRPM());
+        metric("Beam broken", isTriggered());
     }
 }

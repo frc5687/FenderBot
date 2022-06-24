@@ -3,9 +3,11 @@ package org.frc5687.swerve;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import org.frc5687.swerve.commands.Drive;
 import org.frc5687.swerve.commands.OutliersCommand;
+import org.frc5687.swerve.commands.Auto.Move;
 import org.frc5687.swerve.subsystems.DriveTrain;
 import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.Intake;
@@ -62,7 +64,14 @@ public class RobotContainer extends OutliersContainer {
     public void teleopInit() {}
 
     @Override
-    public void autonomousInit() {}
+    public void autonomousInit() {
+        _driveTrain.startModules();
+        _Maverick.Move();
+    }
+
+    public Command getAutonomousCommand(){
+        return new Move(_Maverick);
+    }
 
     private void setDefaultCommand(OutliersSubsystem subSystem, OutliersCommand command) {
         if (subSystem == null || command == null) {

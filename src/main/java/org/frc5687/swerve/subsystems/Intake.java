@@ -82,7 +82,7 @@ public class Intake extends OutliersSubsystem{
      * @return boolean
      */
     public boolean isTriggered(){
-        return _intakeBeamBreak.get();
+        return !_intakeBeamBreak.get();
     }
     
     private enum Intake_State{
@@ -107,5 +107,6 @@ public class Intake extends OutliersSubsystem{
     public void updateDashboard() {
         metric("Intake falcon velocity", _intake.getSelectedSensorVelocity());
         metric("Intake state", _state.getValue());
+        metric("Beam broken", isTriggered());
     }  
 }
