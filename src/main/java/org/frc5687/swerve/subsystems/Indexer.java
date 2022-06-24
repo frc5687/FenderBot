@@ -7,11 +7,15 @@ import org.frc5687.swerve.Constants;
 import org.frc5687.swerve.RobotMap;
 import org.frc5687.swerve.Constants.INDEXER;
 import org.frc5687.swerve.util.OutliersContainer;
+import org.frc5687.swerve.util.ProximitySensor;
 
 public class Indexer extends OutliersSubsystem{
 
     private int TIMEOUT = 200;
     private TalonFX _indexer;
+    private ProximitySensor _topProximity;
+    private ProximitySensor _bottomProximity;
+    private ProximitySensor _intakeProximity;
     private IndexerState _state;
 
     public Indexer(OutliersContainer container){
@@ -42,6 +46,30 @@ public class Indexer extends OutliersSubsystem{
 
 
     /**
+     * returns value of top proximity sensor
+     * @return true or false
+     */
+    public boolean getTopProximity() {
+        return _topProximity.get();
+    }
+
+    /**
+     * returns value of bottom proximity sensor
+     * @return true or false
+     */
+    public boolean getBottomProximity() {
+        return _bottomProximity.get();
+    }
+
+    /**
+     * returns value of intake proximity sensor
+     * @return true or false
+     */
+    public boolean getIntakeProximity() {
+        return _topProximity.get();
+    }
+
+    /**
      * set the current state of the indexer.
      * @param state
      */
@@ -59,9 +87,12 @@ public class Indexer extends OutliersSubsystem{
 
     public enum IndexerState{
         IDLE(0),
-        INDEXING(1),
-        WRONG_BALL(2),
-        UNKNOWN(3);
+        BALL_DETECTED(1),
+        FIRST_DETECTED(2),
+        SECOND_DETECTED(3),
+        WRONG_BALL(4),
+        SHOOTING(5),
+        UNKNOWN(6);
 
         private final int _value;
         IndexerState(int value){

@@ -17,6 +17,11 @@ public class Shoot extends OutliersCommand {
     }
 
     @Override
+    public void initialize() {
+        _indexer.setState(Indexer.IndexerState.SHOOTING);
+    }
+
+    @Override
     public void execute(){
         super.execute();
         _shooter.setSpeed(Constants.SHOOTER.SHOOTING_SPEED);

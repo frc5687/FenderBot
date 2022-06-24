@@ -147,10 +147,9 @@ public class Constants {
     }
 
     public static class INDEXER{
-        public static final double INDEXING_SPEED = -0.85;
-        public static final double IDLE_INDEXER = 0;
-        public static final double INTAKING_SPEED = -0.18;
-        public static final boolean INVERTED = false;
+        public static final double INDEXING_SPEED = 0.85;
+        public static final double IDLE_INDEXER = 0.2;
+        public static final boolean INVERTED = true;
         public static final double TICKS_TO_ROTATIONS = 2048.0;
         public static final double GEAR_RATIO = 5;
         public static final double VOLTAGE = 12.0;

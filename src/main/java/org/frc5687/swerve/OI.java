@@ -37,7 +37,7 @@ public class OI extends OutliersProxy {
     }
 
     public void initializeButtons(DriveTrain driveTrain, Indexer indexer, Shooter shooter, Intake intake) {
-        _intake.whenHeld(new AutoIntake(intake, indexer));
+        _intake.whenHeld(new AutoIntake(intake));
         _shoot.whenHeld(new Shoot(shooter, indexer));
     }
 

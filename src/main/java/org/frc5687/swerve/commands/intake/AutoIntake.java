@@ -3,18 +3,15 @@ package org.frc5687.swerve.commands.intake;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import org.frc5687.swerve.Constants;
 import org.frc5687.swerve.commands.OutliersCommand;
-import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.Intake;
 
 public class AutoIntake extends OutliersCommand {
 
     private Intake _intake;
-    private Indexer _indexer;
 
-    public AutoIntake(Intake intake, Indexer indexer){
+    public AutoIntake(Intake intake){
         _intake = intake;
-        _indexer = indexer;
-        addRequirements(intake, indexer);
+        addRequirements(intake);
     }
 
     @Override
