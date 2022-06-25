@@ -184,7 +184,7 @@ public class Constants {
     }
 
     public static class INTAKE{
-        public static final double INTAKEING_SPEED = 0.80;
+        public static final double INTAKEING_SPEED = 0.90;
         public static final double RETRACTING_SPEED = -0.80;
         public static final double IDLE_INTAKEING_SPEED = 0.00; //-0.30;
         public static final double CLEANING_SPEED = 0.00;
