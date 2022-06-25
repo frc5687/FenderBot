@@ -4,14 +4,12 @@ package org.frc5687.swerve;
 import static org.frc5687.swerve.Constants.DriveTrain.*;
 import static org.frc5687.swerve.util.Helpers.*;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import org.frc5687.swerve.subsystems.DriveTrain;
 import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.Intake;
 import org.frc5687.swerve.subsystems.Maverick;
-import org.frc5687.swerve.subsystems.Shooter;
-import org.frc5687.swerve.util.AxisButton;
+import org.frc5687.swerve.subsystems.Shooter;  
 import org.frc5687.swerve.util.Gamepad;
 import org.frc5687.swerve.util.OutliersProxy;
 import org.frc5687.swerve.commands.AutoIntake;
@@ -29,6 +27,7 @@ public class OI extends OutliersProxy {
     private JoystickButton _clean;
     private JoystickButton _Maverick;
 
+    private JoystickButton _resetNavx;
 
     private double yIn = 0;
     private double xIn = 0;
@@ -41,13 +40,15 @@ public class OI extends OutliersProxy {
         _shoot = new JoystickButton(_operatorGamepad, Gamepad.Buttons.LEFT_BUMPER.getNumber());
         _clean = new JoystickButton(_operatorGamepad, Gamepad.Buttons.A.getNumber());
         _Maverick = new JoystickButton(_driverGamepad, Gamepad.Buttons.RIGHT_BUMPER.getNumber());
+        _resetNavx = new JoystickButton(_driverGamepad, Gamepad.Buttons.LEFT_BUMPER.getNumber());
     }
 
     public void initializeButtons(DriveTrain driveTrain, Indexer indexer, Shooter shooter, Intake intake, Maverick maverick) {
-        _intake.whenHeld(new AutoIntake(intake, indexer));
+       // _intake.whenHeld(new AutoIntake(intake, indexer));
         _shoot.whenHeld(new Shoot(shooter, indexer));
         _clean.whenHeld(new Clean(intake, indexer, shooter));
-        //_Maverick.whenHeld(new Fly(maverick));
+        _resetNavx.whenPressed(driveTrain::resetYaw);
+        _Maverick.whenHeld(new Fly(maverick));
     }
 
     public double getDriveY() {
@@ -57,7 +58,7 @@ public class OI extends OutliersProxy {
 
         double yOut = yIn / (Math.sqrt(yIn * yIn + (xIn * xIn)) + Constants.EPSILON);
         yOut = (yOut + (yIn * 2)) / 3.0;
-        return -yOut; // inverted cuz navx is upside down.
+        return yOut; // inverted cuz navx is upside down.
     }
 
     public double getDriveX() {
@@ -67,7 +68,7 @@ public class OI extends OutliersProxy {
 
         double xOut = xIn / (Math.sqrt(yIn * yIn + (xIn * xIn)) + Constants.EPSILON);
         xOut = (xOut + (xIn * 2)) / 3.0;
-        return -xOut; // inverted cuz navx is upside down.
+        return xOut; // inverted cuz navx is upside down.
     }
 
     public double getRotationX() {

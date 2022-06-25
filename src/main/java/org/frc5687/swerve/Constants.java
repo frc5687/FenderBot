@@ -167,6 +167,7 @@ public class Constants {
         public static final double CLEANING_SPEED = 0.85;
         public static final double TICKS_TO_ROTATIONS = 2048.0;
         public static final double GEAR_RATIO = 5;
+        public static final long EDGE_IN_DELAY = 1000;
     }
 
     public static class SHOOTER{
@@ -185,10 +186,10 @@ public class Constants {
 
     public static class INTAKE{
         public static final double INTAKEING_SPEED = 0.90;
-        public static final double RETRACTING_SPEED = -0.80;
+        public static final double RETRACTING_SPEED = 0.00;
         public static final double IDLE_INTAKEING_SPEED = 0.00; //-0.30;
         public static final double CLEANING_SPEED = 0.00;
-        public static final double RETRACT_DELAY = 2;
+        public static final long RETRACT_DELAY = 2000;
         public static final boolean INVERTED = false;
     }
 

@@ -3,6 +3,8 @@ package org.frc5687.swerve.commands;
 import org.frc5687.swerve.subsystems.Indexer;
 import org.frc5687.swerve.subsystems.Intake;
 
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
 public class AutoIntake extends OutliersCommand{
 
     private Intake _intake;
@@ -19,7 +21,7 @@ public class AutoIntake extends OutliersCommand{
         super.execute();
         _intake.IntakeBall();
         if(_intake.isTriggered()){
-            _indexer.EdgeIn();
+            (new EdgeIn(_indexer)).schedule();
         }
     }
 
@@ -32,7 +34,5 @@ public class AutoIntake extends OutliersCommand{
     @Override
     public void end(boolean interrupted){
         super.end(interrupted);
-        _intake.Retract();
-        _indexer.Idle();
     }
 }

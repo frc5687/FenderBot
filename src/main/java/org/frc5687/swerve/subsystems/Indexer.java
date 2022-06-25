@@ -64,6 +64,10 @@ public class Indexer extends OutliersSubsystem{
         _timer.reset();
     }
 
+    public void setSpeed(double demand){
+        _indexer.set(ControlMode.PercentOutput, demand);
+    }
+
     /**
      * Stops the indexer form indexing
      */
