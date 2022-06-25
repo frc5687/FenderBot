@@ -17,6 +17,7 @@ public class Shoot extends OutliersCommand{
     @Override
     public void execute(){
         super.execute();
+        error("Shooting");
         _shooter.Shoot();
         _indexer.Feed();
     }

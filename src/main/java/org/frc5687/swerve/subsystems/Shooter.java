@@ -1,7 +1,5 @@
 package org.frc5687.swerve.subsystems;
 
-import javax.lang.model.element.Element;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import org.frc5687.swerve.RobotMap;

@@ -47,7 +47,7 @@ public class OI extends OutliersProxy {
         _intake.whenHeld(new AutoIntake(intake, indexer));
         _shoot.whenHeld(new Shoot(shooter, indexer));
         _clean.whenHeld(new Clean(intake, indexer, shooter));
-        _Maverick.whenHeld(new Fly(maverick));
+        //_Maverick.whenHeld(new Fly(maverick));
     }
 
     public double getDriveY() {

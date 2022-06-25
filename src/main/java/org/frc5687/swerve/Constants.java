@@ -175,7 +175,6 @@ public class Constants {
         public static final double CLEANING_SPEED = -0.43;
         public static final boolean INVERTED = false;
         public static final double kP = 0;
-
         public static final double kI = 0;
         public static final double kD = 0;
 
@@ -188,7 +187,7 @@ public class Constants {
         public static final double INTAKEING_SPEED = 0.80;
         public static final double RETRACTING_SPEED = -0.80;
         public static final double IDLE_INTAKEING_SPEED = 0.00; //-0.30;
-        public static final double CLEANING_SPEED = -0.80;
+        public static final double CLEANING_SPEED = 0.00;
         public static final double RETRACT_DELAY = 2;
         public static final boolean INVERTED = false;
     }

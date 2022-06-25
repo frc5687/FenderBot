@@ -51,6 +51,9 @@ public class Indexer extends OutliersSubsystem{
         _state = Indexer_State.IDLE;
     }
 
+    /**
+     * Edge the ball into the indexer
+     */
     public void EdgeIn(){
         _timer.start();
         while(_timer.get() < 1){
